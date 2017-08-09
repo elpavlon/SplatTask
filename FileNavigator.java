@@ -39,17 +39,18 @@ public class FileNavigator {
             scanner.seek(startpointer);
             int lineCount = 1;
 
-            while (lineCount < 31) {
+            while (lineCount < 30) {
                 line = readPreviousLine();
                 if(line == null) break;
                 lineCount += 1;
                 sb.insert(0, line);
             }
             startpointer = scanner.getFilePointer();
-            while(lineCount<31){
+            while(lineCount<30){
                 sb.insert(0, "\n");
                 lineCount++;
             }
+            sb.append("\n");
         }
         catch(IOException e)
         {
@@ -71,8 +72,8 @@ public class FileNavigator {
             while (line != null) {
                 lineCount ++;
                 sb.append(line);
-                if (lineCount > 30) break;
                 sb.append("\n");
+                if (lineCount > 29) break;
                 line = scanner.readLine();
             }
             endpointer = scanner.getFilePointer();
@@ -105,8 +106,8 @@ public class FileNavigator {
             while (line != null) {
                 lineCount += 1;
                 sb.append(line);
-                if (lineCount > 30) break;
                 sb.append("\n");
+                if (lineCount > 29) break;
                 line = scanner.readLine();
             }
             endpointer = scanner.getFilePointer();
