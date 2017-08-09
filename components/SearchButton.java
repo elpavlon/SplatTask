@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class SearchButton extends JButton {
     public SearchButton(JTextField smallField, JComboBox comboBox, OpenFolderButton open, Component parent) {
-        super("Open");
+        super("Search");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try{

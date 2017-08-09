@@ -1,9 +1,15 @@
 package main.components;
 
+import main.FileNavigator;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.List;
+
 
 public class TabbedPaneManager {
     private JTabbedPane tabbedPane;
@@ -21,21 +27,14 @@ public class TabbedPaneManager {
         tabbedPane = new JTabbedPane();
     }
 
-    public void addFileToPane(File file)
+    public void addFileToPane(File file, List<Long> byteNumbers)
     {
-        try(Scanner scanner = new Scanner(file))
-        {
-            StringBuilder sb = new StringBuilder();
-            while(scanner.hasNext())
-            {
-                sb.append(scanner.nextLine());
-                sb.append("\n");
-            }
-            JTextArea textArea = new JTextArea(sb.toString());
-            textArea.setEditable(false);
-            tabbedPane.add(file.getName(), new JScrollPane(textArea));
-        }
-        catch(FileNotFoundException e)
-        {e.printStackTrace();}
+        FileNavigator fileNavigator = new FileNavigator(file, byteNumbers);
+        JTextArea textArea = new JTextArea(fileNavigator.readFirst());
+        textArea.setEditable(false);
+        ScrollPane scrollPane = new ScrollPane(textArea, fileNavigator);
+
+        tabbedPane.add(file.getName(), scrollPane);
+
     }
 }

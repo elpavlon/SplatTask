@@ -1,9 +1,6 @@
 package main;
 
-import main.components.FolderTreeManager;
-import main.components.OpenFolderButton;
-import main.components.SearchButton;
-import main.components.TabbedPaneManager;
+import main.components.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,8 +64,28 @@ public class MainFrame extends JFrame
         search.setSize(120, 25);
 
         tabbedPane.setLocation(550,0);
-        tabbedPane.setSize(350, 570);
+        tabbedPane.setSize(650, 550);
 
+        JButton previousScreenButton = new PreviousScreenButton();
+        previousScreenButton.setLocation(820,550);
+        previousScreenButton.setSize(50,20);
+
+        JButton nextScreenButton = new NextScreenButton();
+        nextScreenButton.setLocation(900,550);
+        nextScreenButton.setSize(50,20);
+
+        JButton nextWordButton = new NextWordButton();
+        nextWordButton.setLocation(960,550);
+        nextWordButton.setSize(50,20);
+
+        JButton previousWordButton = new PreviousWordButton();
+        previousWordButton.setLocation(760,550);
+        previousWordButton.setSize(50,20);
+
+        container.add(nextWordButton);
+        container.add(previousWordButton);
+        container.add(previousScreenButton);
+        container.add(nextScreenButton);
         container.add(label2);
         container.add(comboBox);
         container.add(label3);
@@ -77,8 +94,10 @@ public class MainFrame extends JFrame
         container.add(tabbedPane);
         setContentPane(container);
         setResizable(false);
-        setSize(900, 600);
+        setSize(1210, 600);
     }
+
+
 
 
     public static void main(String[] args) {
